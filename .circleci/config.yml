@@ -1,4 +1,68 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
+jobs:
+    example-job:
+        docker:
+              # replace with your preferred image
+                    - image: cimg/base:stable
+                        steps:
+                              - slack/notify
+                              workflows:
+                                example-workflow:
+                                    jobs:
+                                          - example-joborbs:
+                                            aws-cli: circleci/aws-cli@2.0.32
+                                            version: 2
+                                            jobs:
+                                            build:
+                                              working_directory: /tmp
+                                                steps:
+                                                    - run:
+                                                            name: Creating Dummy Artifacts
+                                                                    command: |
+                                                                              echo "my artifact file" > /tmp/art-1;
+                                                                                        mkdir /tmp/artifacts;
+                                                                                                  echo "my artifact files in a dijobs:
+  example-job:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
+    steps:
+      - slack/notify
+workflows:
+  example-workflow:
+    jobs:
+      - example-joborbs:
+  aws-cli: circleci/aws-cli@2.0.32
+version: 2
+jobs:
+build:
+  working_directory: /tmp
+  steps:
+    - run:
+        name: Creating Dummy Artifacts
+        command: |
+          echo "my artifact file" > /tmp/art-1;
+          mkdir /tmp/artifacts;
+          echo "my artifact files in a dir" > /tmp/artifacts/art-2;
+
+    - store_artifacts:
+        path: /tmp/art-1
+        destination: artifact-file
+
+    - store_artifacts:
+        path: /tmp/artifactstest-results
+├── jest
+│   └── results.xml
+├── mocha
+│   └── results.xml
+└── rspec
+    └── results.xmlr" > /tmp/artifacts/art-2;
+                                                                                                  
+                                                                                                      - store_artifacts:
+                                                                                                              path: /tmp/art-1
+                                                                                                                      destination: artifact-file
+                                                                                                                      
+                                                                                                                          - store_artifacts:
+                                                                                                                                  path: /tmp/artifacts# Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
