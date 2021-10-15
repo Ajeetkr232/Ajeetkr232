@@ -1,4 +1,5 @@
-jobs:
+jstellar
+obs:
     example-job:
         docker:
               # replace with your preferred image
